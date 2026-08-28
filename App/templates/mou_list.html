@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Generate MOU</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef3f8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .header {
+            background: #1769aa;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .content {
+            background: white;
+            padding: 35px;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .hospital-info {
+            background: #f5f8fb;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .hospital-info h2 {
+            color: #1769aa;
+            margin-top: 0;
+        }
+
+        .mou-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .mou-card {
+            border: 1px solid #d9e0e7;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .mou-card h3 {
+            margin-top: 0;
+            color: #1769aa;
+        }
+
+        .mou-card p {
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            background: #1769aa;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #0d4f82;
+        }
+
+        .back {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        @media(max-width:650px) {
+
+            .mou-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 95%;
+                margin: 20px auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Generate MOU</h1>
+
+        <p>
+            Select the agreement you want to generate
+        </p>
+
+    </div>
+
+
+    <div class="content">
+
+        <div class="hospital-info">
+
+            <h2>Hospital Information</h2>
+
+            <strong>
+                {{ facility.hospital_name }}
+            </strong>
+
+            <p>
+                {{ facility.hospital_address }}
+            </p>
+
+        </div>
+
+
+        <div class="mou-grid">
+
+            <div class="mou-card">
+                <h3>🚑 Generate Ambulance MOU</h3>
+                <p>Generate the ambulance service agreement.</p>
+                <a href="{% url 'generate_mou' facility.id 'ambulance' %}" class="btn">Generate Word</a>
+            </div>
+
+            <div class="mou-card">
+                <h3>🩸 Generate Blood Bank Agreement</h3>
+                <p>Generate the blood bank agreement.</p>
+                <a href="{% url 'generate_mou' facility.id 'blood_bank' %}" class="btn">Generate Word</a>
+            </div>
+
+            <div class="mou-card">
+                <h3>🍽️ Generate Canteen/Catering MOU</h3>
+                <p>Generate the catering agreement.</p>
+                <a href="{% url 'generate_mou' facility.id 'canteen' %}" class="btn">Generate Word</a>
+            </div>
+
+            <div class="mou-card">
+                <h3>🏥 Generate Second Hospital MOU</h3>
+                <p>Generate the referral hospital agreement.</p>
+                <a href="{% url 'generate_mou' facility.id 'second_hospital' %}" class="btn">Generate Word</a>
+            </div>
+
+            <div class="mou-card">
+                <h3>🧪 Generate Laboratory MOU</h3>
+                <p>Generate the laboratory agreement.</p>
+                <a href="{% url 'generate_mou' facility.id 'lab' %}" class="btn">Generate Word</a>
+            </div>
+
+            <div class="mou-card">
+                <h3>☢️ Generate Radio Lab MOU</h3>
+                <p>Generate the radio lab agreement.</p>
+                <a href="{% url 'generate_mou' facility.id 'radio_lab' %}" class="btn">Generate Word</a>
+            </div>
+
+            <div class="mou-card">
+                <h3>🧺 Generate Dry Cleaner MOU</h3>
+                <p>Generate the dry cleaner agreement.</p>
+                <a href="{% url 'generate_mou' facility.id 'dry_cleaner' %}" class="btn">Generate Word</a>
+            </div>
+
+        </div>
+
+
+        <div class="back">
+            <a href="{% url 'facility_information' %}" class="btn">Enter New Facility Information</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
