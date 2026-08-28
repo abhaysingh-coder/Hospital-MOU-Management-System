@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | Hospital MOU{% endblock %}
+{% block content %}
+<section class="welcome"><div><span class="eyebrow">Overview</span><h2>Good to see you, {{ request.user.get_short_name|default:request.user.username }}.</h2><p>Track facilities, agreements, and recent document activity in one place.</p></div><a class="button" href="{% url 'facility_add' %}">+ Add Facility</a></section>
+<section class="stat-grid">
+    <article class="stat-card"><span>Total Facilities</span><strong>{{ facility_count }}</strong><small>+{{ facility_month_count }} this month</small></article>
+    <article class="stat-card"><span>Total MOUs</span><strong>{{ mou_count }}</strong><small>Generated documents</small></article>
+    <article class="stat-card"><span>Active MOUs</span><strong>{{ active_count }}</strong><small>Based on contract dates</small></article>
+    <article class="stat-card accent"><span>Expiring Soon</span><strong>{{ expiring_count }}</strong><small>Next 30 days</small></article>
+</section>
+<section class="content-grid">
+    <article class="panel"><div class="panel-head"><h2>Recent MOU Activity</h2><a href="{% url 'mou_history' %}">View all</a></div>{% for item in recent_history %}<div class="activity"><span class="activity-icon">📄</span><div><strong>{{ item.mou_type }}</strong><p>{{ item.facility.hospital_name }}</p></div><time>{{ item.generated_at|date:"d M, H:i" }}</time></div>{% empty %}<p class="empty">No MOU activity yet.</p>{% endfor %}</article>
+    <article class="panel"><div class="panel-head"><h2>MOUs Expiring Soon</h2><a href="{% url 'mou_history' %}">Review</a></div>{% for item in expiring_history %}<div class="expiry"><div><strong>{{ item.facility.hospital_name }}</strong><p>{{ item.mou_type }}</p></div><span>{{ item.facility.contract_end_date|date:"d M Y" }}</span></div>{% empty %}<p class="empty">No MOUs are expiring within the next 30 days.</p>{% endfor %}</article>
+</section>
+{% endblock %}

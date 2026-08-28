@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ facility.hospital_name }} | Hospital MOU{% endblock %}
+{% block heading %}Facility Detail{% endblock %}
+{% block content %}
+<div class="page-actions"><div><span class="eyebrow">Facility #{{ facility.id }}</span><h2>{{ facility.hospital_name }}</h2></div><div class="button-row"><a class="button secondary" href="{% url 'facility_edit' facility.id %}">Edit Facility</a><a class="button" href="{% url 'generate_mou_page' %}?facility_id={{ facility.id }}">Generate MOU</a></div></div>
+<section class="detail-grid"><article class="panel"><h2>Hospital Information</h2><dl><dt>Hospital Name</dt><dd>{{ facility.hospital_name }}</dd><dt>Hospital Address</dt><dd>{{ facility.hospital_address|linebreaksbr }}</dd><dt>Contract Dates</dt><dd>{{ facility.contract_start_date|date:"d F Y"|default:"Not set" }} to {{ facility.contract_end_date|date:"d F Y"|default:"Not set" }}</dd></dl></article><article class="panel"><h2>Provider Information</h2>{% for label,name,address in provider_rows %}<div class="provider"><strong>{{ label }}</strong><span>{{ name|default:"Not provided" }}</span><small>{{ address|default:"Address not provided" }}</small></div>{% endfor %}</article></section>
+<section class="panel"><div class="panel-head"><h2>Recent MOU History</h2><a href="{% url 'mou_history' %}">View all</a></div>{% for item in history %}<div class="activity"><div><strong>{{ item.mou_type }}</strong><p>{{ item.generated_at|date:"d M Y, H:i" }}</p></div><span class="badge">{{ item.display_status }}</span></div>{% empty %}<p class="empty">No documents generated for this facility.</p>{% endfor %}</section>
+<form method="post" action="{% url 'facility_delete' facility.id %}" onsubmit="return confirmDelete(this);" class="danger-zone">{% csrf_token %}<span>Delete this facility and its history</span><button class="button danger" type="submit">Delete Facility</button></form>
+{% endblock %}

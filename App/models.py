@@ -35,7 +35,10 @@ class FacilityInformation(models.Model):
     lab_name = models.CharField(max_length=255, blank=True)
     lab_address = models.TextField(blank=True)
 
+    contract_start_date = models.DateField(null=True, blank=True)
+    contract_end_date = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.hospital_name
@@ -44,3 +47,29 @@ class FacilityInformation(models.Model):
         verbose_name = "Facility Information"
         verbose_name_plural = "Facility Information"
         ordering = ["-created_at"]
+
+
+class MOUHistory(models.Model):
+    STATUS_CHOICES = [
+        ("Draft", "Draft"),
+        ("Generated", "Generated"),
+        ("Signed", "Signed"),
+        ("Active", "Active"),
+        ("Expired", "Expired"),
+    ]
+
+    facility = models.ForeignKey(
+        FacilityInformation,
+        on_delete=models.CASCADE,
+        related_name="mou_history",
+    )
+    mou_type = models.CharField(max_length=100)
+    generated_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default="Generated")
+    file_name = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return f"{self.facility.hospital_name} - {self.mou_type}"
+
+    class Meta:
+        ordering = ["-generated_at"]

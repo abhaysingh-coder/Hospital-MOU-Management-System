@@ -1,0 +1,4 @@
+{% extends "base.html" %}
+{% block title %}MOU Documents | Hospital MOU{% endblock %}
+{% block heading %}MOU Documents{% endblock %}
+{% block content %}<section class="card-grid">{% for key,label,icon,provider,name_field,address_field in mou_types %}<article class="mou-card"><span class="mou-icon">{{ icon }}</span><h2>{{ label }}</h2><p>Hospital ↔ {{ provider }}</p><a class="button" href="{% url 'generate_mou_page' %}?mou_type={{ key }}">Generate MOU</a></article>{% endfor %}</section>{% endblock %}

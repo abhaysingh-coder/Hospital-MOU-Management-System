@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }} | Hospital MOU{% endblock %}
+{% block heading %}{{ page_title }}{% endblock %}
+{% block content %}
+<section class="panel form-panel"><p class="muted">Hospital name and address are required. Provider details and contract dates are optional.</p><form method="post">{% csrf_token %}{% for field in form %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <em>*</em>{% endif %}</label>{{ field }}{% if field.errors %}<div class="field-error">{{ field.errors|striptags }}</div>{% endif %}</div>{% endfor %}<div class="button-row"><button class="button" type="submit">Save Facility</button><a class="button secondary" href="{% url 'facility_list' %}">Cancel</a></div></form></section>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FacilityInformation
+from .models import FacilityInformation, MOUHistory
 
 
 @admin.register(FacilityInformation)
@@ -28,3 +28,11 @@ class FacilityInformationAdmin(admin.ModelAdmin):
     )
 
     ordering = ("-created_at",)
+
+
+@admin.register(MOUHistory)
+class MOUHistoryAdmin(admin.ModelAdmin):
+    list_display = ("facility", "mou_type", "generated_at", "status", "file_name")
+    search_fields = ("facility__hospital_name", "mou_type")
+    list_filter = ("status", "mou_type")
+    ordering = ("-generated_at",)

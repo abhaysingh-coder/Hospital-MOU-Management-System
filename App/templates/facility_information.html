@@ -424,6 +424,24 @@
             </div>
 
 
+            <div class="section">
+
+                <h2>Contract Dates</h2>
+
+                <div class="field">
+                    <label for="{{ form.contract_start_date.id_for_label }}">Contract Start Date</label>
+                    {{ form.contract_start_date }}
+                    {{ form.contract_start_date.errors }}
+                </div>
+
+                <div class="field">
+                    <label for="{{ form.contract_end_date.id_for_label }}">Contract End Date</label>
+                    {{ form.contract_end_date }}
+                    {{ form.contract_end_date.errors }}
+                </div>
+
+            </div>
+
             <div class="submit-area">
 
                 <button type="submit">

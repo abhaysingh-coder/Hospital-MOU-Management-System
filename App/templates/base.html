@@ -1,0 +1,35 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Hospital MOU Management{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <button class="menu-toggle" type="button" aria-label="Open navigation">☰</button>
+    <aside class="sidebar">
+        <a class="brand" href="{% url 'dashboard' %}"><span>🏥</span><strong>Hospital MOU</strong></a>
+        <nav>
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <div class="nav-label">Facilities</div>
+            <a href="{% url 'facility_list' %}">All Facilities</a>
+            <a href="{% url 'facility_add' %}">Add Facility</a>
+            <div class="nav-label">MOU Documents</div>
+            <a href="{% url 'mou_documents' %}">All MOU Types</a>
+            <a href="{% url 'generate_mou_page' %}">Generate MOU</a>
+            <a href="{% url 'mou_history' %}">MOU History</a>
+            <div class="nav-label">Account</div>
+            <a href="{% url 'admin:index' %}">Settings</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <header class="topbar"><div><span class="eyebrow">Hospital operations</span><h1>{% block heading %}Hospital MOU Management System{% endblock %}</h1></div><span class="user-chip">{{ request.user.username }}</span></header>
+        {% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}
+        {% block content %}{% endblock %}
+    </main>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html>

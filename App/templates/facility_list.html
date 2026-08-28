@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Facilities | Hospital MOU{% endblock %}
+{% block heading %}Facilities{% endblock %}
+{% block content %}
+<div class="page-actions"><form class="search" method="get"><input name="q" value="{{ query }}" placeholder="Search hospital..." aria-label="Search hospital"><button class="button" type="submit">Search</button></form><a class="button" href="{% url 'facility_add' %}">+ Add Facility</a></div>
+<section class="panel table-wrap"><table><thead><tr><th>ID</th><th>Hospital</th><th>Address</th><th>Created</th><th>Updated</th><th>Actions</th></tr></thead><tbody>{% for facility in facilities %}<tr><td>#{{ facility.id }}</td><td><strong>{{ facility.hospital_name }}</strong></td><td>{{ facility.hospital_address|truncatechars:55 }}</td><td>{{ facility.created_at|date:"d M Y" }}</td><td>{{ facility.updated_at|date:"d M Y" }}</td><td class="actions"><a href="{% url 'facility_detail' facility.id %}">View</a><a href="{% url 'facility_edit' facility.id %}">Edit</a><a href="{% url 'generate_mou_page' %}?facility_id={{ facility.id }}">Generate</a></td></tr>{% empty %}<tr><td colspan="6" class="empty">No facilities found.</td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}

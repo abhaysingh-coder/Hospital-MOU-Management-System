@@ -31,6 +31,8 @@ class FacilityInformationForm(forms.ModelForm):
 
             "lab_name",
             "lab_address",
+            "contract_start_date",
+            "contract_end_date",
         ]
 
         widgets = {
@@ -122,6 +124,16 @@ class FacilityInformationForm(forms.ModelForm):
                 "placeholder": "Enter laboratory address",
                 "rows": 3
             }),
+
+            "contract_start_date": forms.DateInput(attrs={
+                "class": "form-control",
+                "type": "date",
+            }),
+
+            "contract_end_date": forms.DateInput(attrs={
+                "class": "form-control",
+                "type": "date",
+            }),
         }
 
         labels = {
@@ -148,4 +160,6 @@ class FacilityInformationForm(forms.ModelForm):
 
             "lab_name": "Laboratory Name",
             "lab_address": "Laboratory Address",
+            "contract_start_date": "Contract Start Date",
+            "contract_end_date": "Contract End Date",
         }
