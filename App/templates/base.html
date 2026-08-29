@@ -24,7 +24,10 @@
             <a href="{% url 'mou_history' %}">MOU History</a>
             <div class="nav-label">Account</div>
             <a href="{% url 'admin:index' %}">Settings</a>
-            <a href="{% url 'logout' %}">Logout</a>
+            <form method="post" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
         </nav>
     </aside>
     <main class="main-content">
