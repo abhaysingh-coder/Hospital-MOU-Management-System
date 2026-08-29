@@ -56,7 +56,9 @@ class FacilityInformationForm(forms.ModelForm):
             "dry_cleaner_address": forms.Textarea(attrs={
                 "class": "form-control",
                 "placeholder": "Enter dry cleaner address",
-                "rows": 3
+                "rows": 3,
+                "list": "provider-address-dry_cleaner_address",
+                "data-name-field": "dry_cleaner_name",
             }),
 
             "blood_bank_name": forms.TextInput(attrs={
@@ -67,7 +69,9 @@ class FacilityInformationForm(forms.ModelForm):
             "blood_bank_address": forms.Textarea(attrs={
                 "class": "form-control",
                 "placeholder": "Enter blood bank address",
-                "rows": 3
+                "rows": 3,
+                "list": "provider-address-blood_bank_address",
+                "data-name-field": "blood_bank_name",
             }),
 
             "canteen_name": forms.TextInput(attrs={
@@ -78,7 +82,9 @@ class FacilityInformationForm(forms.ModelForm):
             "canteen_address": forms.Textarea(attrs={
                 "class": "form-control",
                 "placeholder": "Enter canteen address",
-                "rows": 3
+                "rows": 3,
+                "list": "provider-address-canteen_address",
+                "data-name-field": "canteen_name",
             }),
 
             "second_hospital_name": forms.TextInput(attrs={
@@ -89,7 +95,9 @@ class FacilityInformationForm(forms.ModelForm):
             "second_hospital_address": forms.Textarea(attrs={
                 "class": "form-control",
                 "placeholder": "Enter second hospital address",
-                "rows": 3
+                "rows": 3,
+                "list": "provider-address-second_hospital_address",
+                "data-name-field": "second_hospital_name",
             }),
 
             "ambulance_name": forms.TextInput(attrs={
@@ -100,7 +108,9 @@ class FacilityInformationForm(forms.ModelForm):
             "ambulance_address": forms.Textarea(attrs={
                 "class": "form-control",
                 "placeholder": "Enter ambulance address",
-                "rows": 3
+                "rows": 3,
+                "list": "provider-address-ambulance_address",
+                "data-name-field": "ambulance_name",
             }),
 
             "radio_lab_name": forms.TextInput(attrs={
@@ -111,7 +121,9 @@ class FacilityInformationForm(forms.ModelForm):
             "radio_lab_address": forms.Textarea(attrs={
                 "class": "form-control",
                 "placeholder": "Enter radio lab address",
-                "rows": 3
+                "rows": 3,
+                "list": "provider-address-radio_lab_address",
+                "data-name-field": "radio_lab_name",
             }),
 
             "lab_name": forms.TextInput(attrs={
@@ -122,7 +134,9 @@ class FacilityInformationForm(forms.ModelForm):
             "lab_address": forms.Textarea(attrs={
                 "class": "form-control",
                 "placeholder": "Enter laboratory address",
-                "rows": 3
+                "rows": 3,
+                "list": "provider-address-lab_address",
+                "data-name-field": "lab_name",
             }),
 
             "contract_start_date": forms.DateInput(attrs={

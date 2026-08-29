@@ -36,6 +36,33 @@ MOU_TYPES = (
     ("dry_cleaner", "Dry Cleaner MOU", "👕", "Dry Cleaner", "dry_cleaner_name", "dry_cleaner_address"),
 )
 
+PROVIDER_DETAIL_FIELDS = (
+    ("dry_cleaner", "dry_cleaner_name", "dry_cleaner_address"),
+    ("blood_bank", "blood_bank_name", "blood_bank_address"),
+    ("canteen", "canteen_name", "canteen_address"),
+    ("second_hospital", "second_hospital_name", "second_hospital_address"),
+    ("ambulance", "ambulance_name", "ambulance_address"),
+    ("radio_lab", "radio_lab_name", "radio_lab_address"),
+    ("lab", "lab_name", "lab_address"),
+)
+
+
+def _provider_address_data():
+    provider_data = []
+    for facility in FacilityInformation.objects.all():
+        for provider_name, name_field, address_field in PROVIDER_DETAIL_FIELDS:
+            name = getattr(facility, name_field, "")
+            address = getattr(facility, address_field, "")
+            if name and address:
+                provider_data.append({
+                    "provider": provider_name,
+                    "name": name,
+                    "address": address,
+                    "name_field": name_field,
+                    "address_field": address_field,
+                })
+    return provider_data
+
 
 @login_required
 def facility_information(request):
@@ -48,7 +75,10 @@ def facility_information(request):
     else:
         form = FacilityInformationForm()
 
-    return render(request, "facility_information.html", {"form": form})
+    return render(request, "facility_information.html", {
+        "form": form,
+        "provider_address_data": _provider_address_data(),
+    })
 
 
 def _contract_status(facility, default="Generated"):
@@ -111,7 +141,11 @@ def facility_add(request):
             return redirect("facility_detail", facility_id=facility.id)
     else:
         form = FacilityInformationForm()
-    return render(request, "facility_edit.html", {"form": form, "page_title": "Add Facility"})
+    return render(request, "facility_edit.html", {
+        "form": form,
+        "page_title": "Add Facility",
+        "provider_address_data": _provider_address_data(),
+    })
 
 
 @login_required
@@ -144,7 +178,12 @@ def facility_edit(request, facility_id):
             return redirect("facility_detail", facility_id=facility.id)
     else:
         form = FacilityInformationForm(instance=facility)
-    return render(request, "facility_edit.html", {"form": form, "facility": facility, "page_title": "Edit Facility"})
+    return render(request, "facility_edit.html", {
+        "form": form,
+        "facility": facility,
+        "page_title": "Edit Facility",
+        "provider_address_data": _provider_address_data(),
+    })
 
 
 @login_required

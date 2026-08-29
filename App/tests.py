@@ -77,3 +77,18 @@ class DashboardWorkflowTests(TestCase):
             self.assertEqual(response["Content-Type"], "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
             response.close()
         self.assertEqual(MOUHistory.objects.count(), 7)
+
+    def test_add_form_includes_saved_provider_lookup_for_name_recommendations(self):
+        FacilityInformation.objects.create(
+            hospital_name="City Hospital",
+            hospital_address="12 Market Road",
+            ambulance_name="City Ambulance",
+            ambulance_address="12 Market Road",
+        )
+
+        response = self.client.get(reverse("facility_add"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "provider-address-data")
+        self.assertContains(response, "\"ambulance_name\"")
+        self.assertContains(response, "\"City Ambulance\"")
