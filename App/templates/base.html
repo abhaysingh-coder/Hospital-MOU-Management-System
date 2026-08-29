@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Hospital MOU Management{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/dashboard.css' %}">
 </head>
 <body>
     <button class="menu-toggle" type="button" aria-label="Open navigation">☰</button>
@@ -30,6 +30,6 @@
         {% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}
         {% block content %}{% endblock %}
     </main>
-    <script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="{% static 'JS/dashboard.js' %}"></script>
 </body>
 </html>
