@@ -3,6 +3,8 @@
 
 {% block extrahead %}
     {{ block.super }}
+    <meta name="theme-color" content="#102a43">
     <link rel="icon" type="image/png" href="{% static 'favicon.png' %}" sizes="64x64">
     <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}" sizes="any">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
 {% endblock %}

@@ -1,0 +1,22 @@
+{
+  "name": "Hospital MOU Management",
+  "short_name": "Hospital MOU",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f8fb",
+  "theme_color": "#102a43",
+  "description": "Hospital MOU Management System",
+  "icons": [
+    {
+      "src": "/static/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
